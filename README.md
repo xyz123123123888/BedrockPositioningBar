@@ -13,7 +13,7 @@ Minecraft 引入了原版定位栏（Locator Bar），显示其他玩家相对�
 | 组件 | 版本 |
 | --- | --- |
 | Java | 25（需 JDK 25，如 Java 25.0.3 LTS） |
-| Gradle | 9.7.0（使用系统 gradle，未内置 wrapper 脚本） |
+| Gradle | 9.7.0（推荐使用 gradle --- 请自行准备工具） |
 | Fabric Loom | 1.17+（自动拉取） |
 | Fabric Loader | 0.19.3 |
 | Fabric API | 0.157.0+26.2 |
