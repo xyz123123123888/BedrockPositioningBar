@@ -1,5 +1,7 @@
 # BedrockPositioningBar
 
+[![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](LICENSE)
+
 一个 Fabric 客户端模组，解决 **ViaFabricPlus** 连接 **Bedrock 服务器**时玩家定位条（Locator Bar）缺失的问题。
 
 目标平台：**Minecraft 26.2**（未混淆版本）· Fabric Loader `0.19.3` · Java 25。
@@ -83,3 +85,10 @@ BedrockPositioningBar/
 - 配置读写失败
 
 启动时每次追加一条分隔线便于区分会话。
+
+## 开源许可
+
+本项目采用 **[GNU GPL-3.0](LICENSE)** 许可（copyleft）。
+
+本模组通过反射集成 **[ViaFabricPlus](https://github.com/ViaVersion/ViaFabricPlus)**（GPL-3.0）以启用 Bedrock 服务器上的定位条显示。
+为规避 GPL-3.0 衍生作品争议、确保合规，本项目整体采用与依赖一致的 **GPL-3.0** 许可。
