@@ -6,7 +6,7 @@
   "description": "为 ViaFabricPlus 连接 Bedrock 服务器时提供玩家定位条（Locator Bar）显示。",
   "authors": ["魔汐"],
   "contact": {},
-  "license": "MIT",
+  "license": "GPL-3.0",
   "environment": "client",
   "entrypoints": {
     "client": [
