@@ -10,32 +10,32 @@ Minecraft 引入了原版定位栏（Locator Bar），显示其他玩家相对�
 
 ## 构建环境要求
 
-| 组件 | 版本 |
-| --- | --- |
-| Java | 25（需 JDK 25，如 Java 25.0.3 LTS） |
-| Gradle | 9.7.0（推荐使用 gradle --- 请自行准备工具） |
-| Fabric Loom | 1.17+（自动拉取） |
-| Fabric Loader | 0.19.3 |
-| Fabric API | 0.157.0+26.2 |
-| Minecraft | 26.2（stable） |
+| 组件             | 版本                           |
+| ---------------- | ------------------------------ |
+| Java             | 25（需 JDK 25，如 Java 25.0.3 LTS） |
+| Gradle           | 9.7.0（使用系统 gradle，未内置 wrapper 脚本） |
+| Fabric Loom      | 1.17+（自动拉取）              |
+| Fabric Loader    | 0.19.3                         |
+| Fabric API       | 0.157.0+26.2                   |
+| Minecraft        | 26.2（stable）                 |
 
 ## 构建
 
+```bash
 # 首次构建（下载 Minecraft + 依赖，可能需要 5-10 分钟）
 gradle build
 
 # 仅编译 Java
 gradle compileJava
-
-# 查看产物
-# build/libs/bedrockpositioningbar.jar
 ```
+
+构建产物位于 `build/libs/bedrockpositioningbar.jar`。
 
 > 首次构建需要联网下载 Minecraft 26.2 客户端与服务端 jar、Fabric API 等，请耐心等待。
 
 ## 项目结构
 
-```
+```plaintext
 BedrockPositioningBar/
 ├── build.gradle.kts              # 构建脚本（Loom 26.2 未混淆配置）
 ├── settings.gradle.kts
@@ -65,15 +65,14 @@ BedrockPositioningBar/
 
 配置文件位于 `config/bedrockpositioningbar.json`：
 
-| 键 | 类型 | 默认值 | 说明 |
-| --- | --- | --- | --- |
-| `onlyOnBedrock` | bool | `true` | 是否仅在 Bedrock 服务器启用 |
-| `showPlayers` | bool | `true` | 是否显示其他玩家指示器 |
-| `showOffscreenArrows` | bool | `true` | 是否显示越界箭头 |
-| `hudScale` | double | `0.75` | HUD 缩放（0.5~2.0），默认贴合物品栏上方原版定位条位置，避免遮挡经验条 |
+| 键                     | 类型   | 默认值 | 说明                                                         |
+| ---------------------- | ------ | ------ | ------------------------------------------------------------ |
+| `onlyOnBedrock`        | bool   | `true` | 是否仅在 Bedrock 服务器启用                                  |
+| `showPlayers`          | bool   | `true` | 是否显示其他玩家指示器                                       |
+| `showOffscreenArrows`  | bool   | `true` | 是否显示越界箭头                                             |
+| `hudScale`             | double | `0.75` | HUD 缩放（0.5~2.0），默认贴合物品栏上方原版定位条位置，避免遮挡经验条 |
 
-除直接编辑 JSON 外，游戏内可通过命令 `/bpb gui` 打开**自绘配置界面**（纯原版 Screen/Button/CycleButton 实现，MIT 合规，不依赖 Cloth Config / ModMenu），所有选项即时生效并落盘。
-
+除直接编辑 JSON 外，游戏内可通过命令 `/bpb gui` 打开**自绘配置界面**（纯原版 `Screen`/`Button`/`CycleButton` 实现，MIT 合规，不依赖 Cloth Config / ModMenu），所有选项即时生效并落盘。
 
 ## 独立日志
 
