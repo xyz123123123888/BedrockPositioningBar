@@ -36,9 +36,6 @@ public final class BedrockPositioningBarConfig {
     /** 是否显示屏幕上方/下方的越界箭头。 */
     public boolean showOffscreenArrows = true;
 
-    /** HUD 缩放比例（0.5 ~ 2.0）。默认 0.75，贴合物品栏上方的原版定位条位置，避免遮挡经验条。 */
-    public double hudScale = 0.75;
-
     private BedrockPositioningBarConfig() {
     }
 

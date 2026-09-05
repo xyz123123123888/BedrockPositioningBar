@@ -2,7 +2,9 @@
   "required": true,
   "package": "com.moxi.bedrockpositioningbar.mixin",
   "compatibilityLevel": "JAVA_25",
-  "client": [],
+  "client": [
+    "ContextualBarTopMixin"
+  ],
   "injectors": {
     "defaultRequire": 1
   }

@@ -18,7 +18,7 @@ plugins {
 val minecraftVersion: String = providers.gradleProperty("minecraft_version").get()
 val fabricLoaderVersion: String = providers.gradleProperty("fabric_loader_version").get()
 val fabricApiVersion: String = providers.gradleProperty("fabric_api_version").get()
-val modVersion: String = providers.gradleProperty("mod_version").get()
+// val modVersion: String = providers.gradleProperty("mod_version").get()
 val mavenGroup: String = providers.gradleProperty("maven_group").get()
 val archivesBaseName: String = providers.gradleProperty("archives_base_name").get()
 

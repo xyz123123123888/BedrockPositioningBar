@@ -1,6 +1,5 @@
 package com.moxi.bedrockpositioningbar.util;
 
-import com.mojang.brigadier.arguments.DoubleArgumentType;
 import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.moxi.bedrockpositioningbar.config.BedrockPositioningBarConfig;
 import com.moxi.bedrockpositioningbar.config.BedrockPositioningBarConfigScreen;
@@ -39,14 +38,8 @@ public final class BedrockPositioningBarCommand {
                                 .then(argument("value", BoolArgumentType.bool())
                                         .executes(ctx -> setShowOffscreenArrows(
                                                 ctx.getSource(), BoolArgumentType.getBool(ctx, "value")))))
-                        .then(literal("hudScale")
-                                .then(argument("value", DoubleArgumentType.doubleArg(0.5, 2.0))
-                                        .executes(ctx -> setHudScale(
-                                                ctx.getSource(), DoubleArgumentType.getDouble(ctx, "value")))))
                         .then(literal("reload")
-                                .executes(ctx -> reload(ctx.getSource()))
-                                .then(literal("true")
-                                        .executes(ctx -> reload(ctx.getSource()))))
+                                .executes(ctx -> reload(ctx.getSource())))
                         .then(literal("gui")
                                 .executes(ctx -> openGui(ctx.getSource())))
                         .then(literal("status")
@@ -87,13 +80,6 @@ public final class BedrockPositioningBarCommand {
         BedrockPositioningBarConfig.get().showOffscreenArrows = value;
         BedrockPositioningBarConfig.save();
         source.sendFeedback(Component.literal("showOffscreenArrows = " + value));
-        return 1;
-    }
-
-    private static int setHudScale(FabricClientCommandSource source, double value) {
-        BedrockPositioningBarConfig.get().hudScale = value;
-        BedrockPositioningBarConfig.save();
-        source.sendFeedback(Component.literal("hudScale = " + value));
         return 1;
     }
 

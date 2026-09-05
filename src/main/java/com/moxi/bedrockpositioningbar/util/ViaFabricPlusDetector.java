@@ -9,15 +9,13 @@ import java.lang.reflect.Method;
 /**
  * 检测当前是否处于 ViaFabricPlus 的 Bedrock 服务器会话。
  *
- * <p><b>逆向来源说明</b>：ViaFabricPlus 在建立 Bedrock 会话时，会激活其 Bedrock
- * 协议翻译器，并通过 {@code net.viapf.viafabricplus.util.ConnectionState#isViaServer()}
- * （旧版包名 {@code de.florianmichael.viafabricplus}）暴露"当前是否经过 Via 翻译连接"。
- * 本类通过反射调用该方法——<b>不编译链接其 GPL-3.0 类</b>，因此不构成派生作品，
- * 保持本项目 MIT 合规。</p>
+ * <p><b>来源说明</b>：本项目与 ViaFabricPlus 均为 GPL-3.0，可直接阅读/借用其源码。
+ * 这里采用反射调用以避免与不同版本绑定死，反射失败时静默降级，不会影响模组主流程。</p>
  *
  * <p>判定优先级（从可靠到兜底）：</p>
  * <ol>
- *   <li>反射 {@code ConnectionState.isViaServer()}，为 true 表示当前处于翻译会话（Bedrock）。</li>
+ *   <li>反射 {@code ProtocolTranslator.getPlayNetworkUserConnection()}，非 null 表示当前处于
+ *        Via 翻译会话（Bedrock）。同时兼容旧版 {@code ConnectionState.isViaServer()}。</li>
  *   <li>解析 {@link ServerData#ip} 中的 Bedrock 端口（19132/19133）。注意 ViaFabricPlus
  *       会把 Bedrock 目标改写为逗号分隔格式（形如 {@code host,0,19132}），因此需同时
  *       解析冒号与逗号两种分隔。</li>
