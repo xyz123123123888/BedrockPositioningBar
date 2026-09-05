@@ -2,7 +2,7 @@
 
 [![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](LICENSE)
 
-一个 Fabric 客户端模组，解决 **ViaFabricPlus** 连接 **Bedrock 服务器**时玩家定位条（Locator Bar）缺失的问题。
+一个 Fabric 客户端模组，解决使用 **ViaFabricPlus** 模组来连接 **Bedrock 服务器**时玩家定位条（Locator Bar）缺失的问题。
 
 目标平台：**Minecraft 26.2**（未混淆版本）· Fabric Loader `0.19.3` · Java 25。
 
@@ -15,7 +15,7 @@ Minecraft 引入了原版定位栏（Locator Bar），显示其他玩家相对�
 | 组件             | 版本                           |
 | ---------------- | ------------------------------ |
 | Java             | 25（需 JDK 25，如 Java 25.0.3 LTS） |
-| Gradle           | 9.7.0（使用系统 gradle，未内置 wrapper 脚本） |
+| Gradle           | 9.7.0 |
 | Fabric Loom      | 1.17+（自动拉取）              |
 | Fabric Loader    | 0.19.3                         |
 | Fabric API       | 0.157.0+26.2                   |
@@ -23,11 +23,13 @@ Minecraft 引入了原版定位栏（Locator Bar），显示其他玩家相对�
 
 ## 构建
 
-```bash
 # 首次构建（下载 Minecraft + 依赖，可能需要 5-10 分钟）
+```bash
 gradle build
+```
 
 # 仅编译 Java
+```bash
 gradle compileJava
 ```
 
@@ -51,7 +53,7 @@ BedrockPositioningBar/
     │   │   └── BedrockPositioningBarClient.java      # 客户端入口
     │   ├── config/
     │   │   ├── BedrockPositioningBarConfig.java             # JSON 配置
-    │   │   └── BedrockPositioningBarConfigScreen.java       # 自绘配置界面（纯 MIT）
+    │   │   └── BedrockPositioningBarConfigScreen.java       # 自绘配置界面
     │   ├── hud/
     │   │   └── BedrockLocatorBarHud.java                    # 定位条渲染器（方案 B）
     │   └── util/
@@ -72,16 +74,19 @@ BedrockPositioningBar/
 | `onlyOnBedrock`        | bool   | `true` | 是否仅在 Bedrock 服务器启用                                  |
 | `showPlayers`          | bool   | `true` | 是否显示其他玩家指示器                                       |
 | `showOffscreenArrows`  | bool   | `true` | 是否显示越界箭头                                             |
-| `hudScale`             | double | `0.75` | HUD 缩放（0.5~2.0），默认贴合物品栏上方原版定位条位置，避免遮挡经验条 |
 
-除直接编辑 JSON 外，游戏内可通过命令 `/bpb gui` 打开**自绘配置界面**（纯原版 `Screen`/`Button`/`CycleButton` 实现，MIT 合规，不依赖 Cloth Config / ModMenu），所有选项即时生效并落盘。
+> **定位条布局（2026-09-05 "最后一次更新"起）**：定位条固定绘制在经验条原本紧贴物品栏上方的位置（纯原版布局缩放模式，不再提供 HUD 模组缩放）。有玩家可定位时，定位条激活并让经验条上移 14px 让出空间；无玩家时定位条自动隐藏、经验条回落原版位置。
+
+> 若此前配置过旧版本，`config/bedrockpositioningbar.json` 中残留的 `hudScale` 字段已被移除忽略，可安全保留或删除。
+
+除编辑 JSON 外，游戏内可通过命令 `/bpb gui` 打开**自绘配置界面**（纯原版 `Screen`/`Button`/`CycleButton` 实现，不依赖 Cloth Config / ModMenu），选项即时生效并落盘。
 
 ## 独立日志
 
 模组运行日志单独写入 `config/bedrockpositioningbar/debug.log`（追加模式，跨会话保留），与游戏主日志 `latest.log` 分离，便于排查：
 
 - 客户端初始化状态
-- HUD 渲染诊断（`[BPB][render]`，玩家数变化时输出一次）
+- 定位条激活/感知切换
 - 配置读写失败
 
 启动时每次追加一条分隔线便于区分会话。
@@ -90,5 +95,4 @@ BedrockPositioningBar/
 
 本项目采用 **[GNU GPL-3.0](LICENSE)** 许可（copyleft）。
 
-本模组通过反射集成 **[ViaFabricPlus](https://github.com/ViaVersion/ViaFabricPlus)**（GPL-3.0）以启用 Bedrock 服务器上的定位条显示。
-为规避 GPL-3.0 衍生作品争议、确保合规，本项目整体采用与依赖一致的 **GPL-3.0** 许可。
+本模组通过反射集成 **[ViaFabricPlus](https://github.com/ViaVersion/ViaFabricPlus)**（GPL-3.0）以启用 Bedrock 服务器上的定位条显示。为规避 GPL-3.0 衍生作品争议、确保合规，本项目整体采用与依赖一致的 **GPL-3.0** 许可。
